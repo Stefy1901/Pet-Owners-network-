@@ -1,0 +1,95 @@
+<div style="display: flex;">
+
+  <!-- LEFT MENU -->
+  <div style="width: 20%;">
+    <div class="d-flex flex-column p-3 text-white bg-dark vh-100">
+
+      <span class="fs-4 mb-3">Menu</span>
+
+      <!-- 🔔 FRIEND REQUEST NOTIFICATIONS -->
+      <div *ngIf="friendRequests.length > 0" class="mb-3">
+        <strong>Friend Requests ({{ friendRequests.length }})</strong>
+
+        <ul class="list-unstyled mt-2">
+          <li
+            *ngFor="let req of friendRequests"
+            class="d-flex justify-content-between align-items-center mb-2"
+          >
+            <a
+              [routerLink]="['/profile', req.sender.id]"
+              class="text-white text-decoration-none"
+            >
+              {{ req.sender.username }}
+            </a>
+
+            <div>
+              <button
+                class="btn btn-sm btn-success me-1"
+                (click)="acceptRequest(req.id)"
+              >
+                ✔
+              </button>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="declineRequest(req.id)"
+              >
+                ✖
+              </button>
+            </div>
+          </li>
+        </ul>
+
+        <hr />
+      </div>
+
+      <!-- NAV -->
+      <ul class="nav nav-pills flex-column mb-auto">
+
+        <li class="nav-item">
+          <a routerLink="/feed" routerLinkActive="active" class="nav-link text-white">
+            🏠 Feed
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/profile" routerLinkActive="active" class="nav-link text-white">
+            👤 Profile
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/meetups" routerLinkActive="active" class="nav-link text-white">
+            🐾 Meetups
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/pet-alerts" routerLinkActive="active" class="nav-link text-danger">
+            🚨 Pet Alerts
+          </a>
+        </li>
+
+        <li
+          class="nav-item"
+          *ngIf="router.url.includes('/profile')"
+        >
+          <a routerLink="/settings" class="nav-link text-white">
+            ⚙️ Settings
+          </a>
+        </li>
+      </ul>
+
+      <hr />
+
+      <button class="btn btn-outline-light mt-auto" (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div style="width: 80%; padding: 1rem;">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

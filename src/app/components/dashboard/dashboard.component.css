@@ -1,0 +1,68 @@
+.dashboard-container {
+  max-width: 600px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.create-post {
+  margin: 20px 0;
+}
+
+textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: none;
+  font-family: inherit;
+}
+
+button {
+  margin-top: 5px;
+  padding: 6px 12px;
+  background: #ff758c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff7eb9;
+}
+
+.feed {
+  margin-top: 20px;
+}
+
+.post {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+  color: #333;
+}
+
+.post-img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.post-footer button {
+  background: #ff758c;
+}
+
+.post-footer button:hover {
+  background: #ff7eb9;
+}

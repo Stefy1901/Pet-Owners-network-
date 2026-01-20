@@ -1,0 +1,25 @@
+.meetups-container {
+  background: #eaf4ff;
+  padding: 20px;
+}
+
+.meetup-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  margin-right: 5px;
+}
+
+.leave {
+  background: #ef4444;
+}

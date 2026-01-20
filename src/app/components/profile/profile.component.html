@@ -1,0 +1,94 @@
+<div class="profile-container">
+
+  <!-- HEADER -->
+  <div class="profile-header">
+
+    <!-- PROFILE PICTURE -->
+    <div class="profile-pic-wrapper">
+      <img
+        [src]="previewProfilePic || getFullImageUrl(user.profilePictureUrl) || 'assets/default-profile.png'"
+        class="profile-picture"
+      />
+    </div>
+
+    <!-- PROFILE INFO -->
+    <div class="profile-info">
+
+      <!-- USERNAME + SETTINGS -->
+      <h2 class="profile-title">
+        {{ user.username }}
+        <a *ngIf="isOwnProfile"
+           routerLink="/settings"
+           class="settings-icon"
+           title="Settings">
+          ⚙️
+        </a>
+      </h2>
+
+      <!-- BIO -->
+      <p class="profile-bio">
+        {{ user.bio || 'No description yet.' }}
+      </p>
+
+      <!-- FRIEND ACTIONS (ONLY OTHER USERS) -->
+      <div *ngIf="!isOwnProfile" class="friend-actions">
+      <button *ngIf="!isFriend && !hasPendingRequest" (click)="addFriend()">➕ Add Friend</button>
+        <button *ngIf="hasPendingRequest" disabled>⏳ Pending</button>
+        <button *ngIf="isFriend" (click)="removeFriend()">➖ Remove Friend</button>
+      </div>
+
+      <!-- PROFILE PICTURE UPLOAD (ONLY OWN PROFILE) -->
+      <div *ngIf="isOwnProfile" class="profile-actions">
+        <input type="file" (change)="onProfilePicSelected($event)" />
+        <button (click)="uploadProfilePicture()">Change Picture</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BIO EDIT (ONLY OWN PROFILE) -->
+  <div class="bio-section">
+    <textarea [(ngModel)]="user.bio" placeholder="Write your bio..." [disabled]="!isOwnProfile"></textarea>
+    <button (click)="saveBio()" [disabled]="!isOwnProfile">Save Bio</button>
+  </div>
+
+  <hr />
+
+  <!-- FRIENDS LINK -->
+  <div class="friends-section">
+    <a [routerLink]="['/friends', user.id]">
+      Friends ({{ user.friendsCount || 0 }})
+    </a>
+  </div>
+
+  <hr />
+
+  <!-- CREATE POST (ONLY OWN PROFILE) -->
+  <div *ngIf="isOwnProfile" class="create-post">
+    <textarea [(ngModel)]="newPost.contentText" placeholder="Share something..."></textarea>
+    <input type="file" (change)="onPostImageSelected($event)" />
+    <button (click)="createPost()">Post</button>
+  </div>
+
+  <hr />
+
+  <!-- POSTS -->
+  <div class="posts-section">
+    <h3>Posts</h3>
+
+    <div class="post" *ngFor="let post of posts">
+      <p>{{ post.contentText }}</p>
+
+      <img *ngIf="post.imageUrl" [src]="post.imageUrl" class="post-img" />
+
+      <div class="post-footer">
+        <button (click)="likePost(post)">❤️ {{ post.likes || 0 }}</button>
+        <span class="time">{{ post.createdAt | date:'short' }}</span>
+        <span class="author">by {{ post.user.username }}</span>
+      </div>
+    </div>
+
+    <p *ngIf="posts.length === 0">No posts to show.</p>
+  </div>
+
+</div>

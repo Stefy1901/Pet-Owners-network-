@@ -1,0 +1,64 @@
+.pet-alerts-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+
+h2 {
+  color: #b00020;
+  font-weight: bold;
+}
+
+/* CREATE ALERT BOX */
+.create-alert {
+  border: 2px solid #b00020;
+  background: #ffe5e5;
+  padding: 1.75rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+.create-alert textarea,
+.create-alert input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #b00020;
+}
+
+
+.create-alert button {
+  background: #b00020;
+  color: white;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.create-alert button:hover {
+  background: #8c001a;
+}
+
+/* ALERT CARD */
+.alert {
+  border-left: 6px solid #b00020;
+  background: #fff5f5;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.alert p {
+  margin: 0.3rem 0;
+}
+
+.alert small {
+  color: #555;
+}
+
+.alert img {
+  max-width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+}

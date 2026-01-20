@@ -1,0 +1,70 @@
+<div class="pet-alerts-container" *ngIf="user">
+
+  <h2>🚨 Pet Alerts in {{ user.city }}</h2>
+
+  <!-- CREATE ALERT -->
+  <div class="create-alert">
+    <textarea
+      placeholder="Describe the lost pet"
+      [(ngModel)]="description">
+    </textarea>
+
+    <input
+      type="text"
+      placeholder="Last seen location"
+      [(ngModel)]="lastLocation" />
+
+    <input
+      type="email"
+      placeholder="Contact email"
+      [(ngModel)]="contactEmail" />
+
+    <input
+      type="text"
+      placeholder="Contact phone"
+      [(ngModel)]="contactPhone" />
+
+    <input
+      type="text"
+      placeholder="Reward (optional)"
+      [(ngModel)]="reward" />
+
+    <input type="file" (change)="onImageSelected($event)" />
+
+    <img *ngIf="previewImage" [src]="previewImage" class="preview-img" />
+
+    <button (click)="createAlert()">Create Alert</button>
+  </div>
+
+  <!-- ALERT LIST -->
+  <div class="alert" *ngFor="let alert of alerts">
+    <p>
+      <strong>
+        Posted by:
+        <a [routerLink]="['/profile', alert.user.id]">{{ alert.user.username }}</a>
+      </strong>
+    </p>
+    <p>{{ alert.description }}</p>
+    <p><strong>Last seen:</strong> {{ alert.lastLocation }}</p>
+    <p><strong>City:</strong> {{ alert.city }}</p>
+    <p><strong>Email:</strong> {{ alert.contactEmail }}</p>
+    <p><strong>Phone:</strong> {{ alert.contactPhone }}</p>
+    <p *ngIf="alert.reward"><strong>Reward:</strong> {{ alert.reward }}</p>
+    <button
+      *ngIf="alert.user.id === user?.id"
+      class="btn btn-danger btn-sm"
+      (click)="deleteAlert(alert.id)"
+    >
+      🗑 Delete
+    </button>
+
+
+    <img
+      *ngIf="alert.imageUrl"
+      [src]="getFullImageUrl(alert.imageUrl)"
+    />
+
+    <small>{{ alert.createdAt | date:'short' }}</small>
+  </div>
+
+</div>

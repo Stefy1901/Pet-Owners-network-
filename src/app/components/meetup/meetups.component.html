@@ -1,0 +1,38 @@
+<div class="meetups-container">
+
+  <h2>🐾 Animal Meetups</h2>
+
+  <div class="create-meetup">
+    <input [(ngModel)]="newMeetup.title" placeholder="Meetup title" />
+    <input [(ngModel)]="newMeetup.location" placeholder="Location" />
+    <input [(ngModel)]="newMeetup.animal" placeholder="Animal" />
+    <!-- datetime-local uses ISO format: yyyy-MM-ddTHH:mm -->
+    <input type="datetime-local" [(ngModel)]="newMeetup.dateTime" />
+    <button (click)="createMeetup()">Create Meetup</button>
+  </div>
+
+
+  <div class="meetup-card" *ngFor="let m of meetups">
+    <h3>{{ m.title }}</h3>
+    <p>📍 {{ m.location }}</p>
+    <p>🐶 {{ m.animal }}</p>
+    <p>📅 {{ m.dateTime | date:'short' }}</p>
+
+    <p><strong>Posted by:
+      <a [routerLink]="['/profile', m.creator?.id]">{{ m.creator?.username }}</a>
+    </strong></p>
+
+    <button (click)="participate(m.id!)">Participate</button>
+    <button class="leave" (click)="leave(m.id!)">Leave</button>
+
+    <p><strong>Participants:</strong></p>
+    <ul>
+      <li *ngFor="let p of m.participants">
+        <a [routerLink]="['/profile', p.id]">{{ p.username }}</a>
+      </li>
+    </ul>
+  </div>
+
+
+</div>
+

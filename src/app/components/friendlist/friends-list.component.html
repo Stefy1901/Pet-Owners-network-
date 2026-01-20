@@ -1,0 +1,21 @@
+<div class="friends-page">
+  <h2>Friends ({{ friends.length }})</h2>
+
+  <div class="friends-list">
+    <div class="friend-card" *ngFor="let friend of friends">
+      <img
+        [src]="getFullImageUrl(friend.profilePictureUrl)"
+        class="friend-avatar"
+      />
+
+      <a [routerLink]="['/profile', friend.id]">
+        {{ friend.username }}
+      </a>
+      <button
+        class="remove-btn"
+        (click)="removeFriend(friend.id)">
+        Remove Friend
+      </button>
+    </div>
+  </div>
+</div>
